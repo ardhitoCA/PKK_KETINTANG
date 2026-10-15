@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'bendahara@pkk.local',
             'no_hp' => '081234567890',
             'role' => 'bendahara',
-            'password' => Hash::make('password123'),
+            'password' => Hash::make('123456'),
         ]);
 
         $ketua = User::create([
@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'ketua@pkk.local',
             'no_hp' => '081234567891',
             'role' => 'ketua',
-            'password' => Hash::make('password123'),
+            'password' => Hash::make('123456'),
         ]);
 
         $anggota1 = User::create([
@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'anggota@pkk.local',
             'no_hp' => '081234567892',
             'role' => 'anggota',
-            'password' => Hash::make('password123'),
+            'password' => Hash::make('123456'),
         ]);
 
         $anggota2 = User::create([
@@ -50,7 +50,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'rini@pkk.local',
             'no_hp' => '081234567893',
             'role' => 'anggota',
-            'password' => Hash::make('password123'),
+            'password' => Hash::make('123456'),
         ]);
 
         // 2. Create Kategori Kas

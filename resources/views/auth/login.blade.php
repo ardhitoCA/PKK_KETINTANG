@@ -91,6 +91,15 @@
                 <span class="text-[10px] text-sky-700/80 block mt-0.5">Titip Barang</span>
             </a>
         </div>
+
+        <!-- Info Password Card -->
+        <div class="mt-3 bg-slate-100 rounded-2xl p-3 text-[11px] text-slate-600 border border-slate-200/80 text-center">
+            <span class="text-slate-400 block text-[10px] uppercase font-bold tracking-wider mb-0.5">Kredensial Manual</span>
+            <p>Password semua akun demo: <strong class="text-slate-800 font-mono font-bold bg-white px-1.5 py-0.5 rounded border border-slate-300">123456</strong></p>
+            <p class="text-[10px] text-slate-500 mt-1">
+                Email: <span class="font-mono text-slate-700">bendahara@pkk.local</span> / <span class="font-mono text-slate-700">ketua@pkk.local</span> / <span class="font-mono text-slate-700">anggota@pkk.local</span>
+            </p>
+        </div>
     </div>
 </div>
 @endsection
