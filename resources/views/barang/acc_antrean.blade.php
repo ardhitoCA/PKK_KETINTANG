@@ -18,7 +18,7 @@
     </div>
 
     <!-- Antrean List (Gambar 3.13) -->
-    <div class="space-y-3">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
         @forelse ($antrean as $item)
             <div class="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm flex items-center justify-between gap-3">
                 <div class="flex items-center space-x-3 min-w-0">

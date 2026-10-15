@@ -18,7 +18,7 @@
     </div>
 
     <!-- Barang Items List (Gambar 3.16) -->
-    <div class="space-y-2.5">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
         @forelse ($barangs as $item)
             <div class="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm flex items-center justify-between gap-3">
                 <div class="min-w-0">

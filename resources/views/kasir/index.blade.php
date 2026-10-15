@@ -18,7 +18,7 @@
     </div>
 
     <!-- Barang Items List (Gambar 3.15) -->
-    <div id="barang-list" class="space-y-2.5">
+    <div id="barang-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         @forelse ($barangs as $item)
             <div class="barang-item bg-white rounded-2xl p-3.5 border border-slate-100 shadow-sm flex items-center justify-between gap-3 transition hover:border-purple-200"
                  data-id="{{ $item->id }}"
@@ -73,7 +73,7 @@
 </div>
 
 <!-- STICKY BOTTOM CHECKOUT BAR (Gambar 3.15) -->
-<div class="fixed md:absolute bottom-14 left-0 right-0 max-w-md mx-auto bg-white/95 backdrop-blur border-t border-slate-200 p-3.5 z-40 flex items-center justify-between shadow-2xl">
+<div class="fixed md:sticky bottom-14 md:bottom-2 left-0 right-0 max-w-full md:max-w-5xl mx-auto bg-white/95 backdrop-blur border-t md:border border-slate-200 p-4 z-40 flex items-center justify-between shadow-2xl md:rounded-2xl mt-4">
     <div>
         <span class="text-[10px] font-semibold text-slate-400 block uppercase tracking-wider">Total Pembayaran:</span>
         <span id="total-text" class="text-base font-black text-purple-700">Rp 0</span>

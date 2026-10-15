@@ -29,6 +29,7 @@
     <div class="space-y-3">
         <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Bagi Hasil Per Anggota</h4>
 
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
         @forelse ($anggotaList as $item)
             <div class="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm flex items-center justify-between gap-3">
                 <div class="flex items-center space-x-3 min-w-0">
@@ -56,10 +57,11 @@
                 </div>
             </div>
         @empty
-            <div class="bg-white rounded-3xl p-8 border border-slate-100 text-center text-xs text-slate-400 shadow-sm">
+            <div class="bg-white rounded-3xl p-8 border border-slate-100 text-center text-xs text-slate-400 shadow-sm col-span-2">
                 Belum ada data penjualan anggota yang tercatat.
             </div>
         @endforelse
+        </div>
     </div>
 
 </div>

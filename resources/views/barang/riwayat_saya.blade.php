@@ -19,7 +19,7 @@
     </div>
 
     <!-- Items List (Gambar 3.17) -->
-    <div class="space-y-3">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
         @forelse ($barangSaya as $data)
             @php $item = $data['barang']; @endphp
             <div class="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm space-y-2.5">
