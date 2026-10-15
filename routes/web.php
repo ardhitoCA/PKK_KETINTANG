@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KasController;
 use App\Http\Controllers\KasirController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\PengaturanController;
 use Illuminate\Support\Facades\Route;
 
 // Redirect root to dashboard (if auth) or login
@@ -36,6 +37,13 @@ Route::middleware('auth')->group(function () {
         Route::get('/acc-barang', [BarangController::class, 'antreanAcc'])->name('barang.acc_antrean');
         Route::post('/acc-barang/{barang}', [BarangController::class, 'prosesAcc'])->name('barang.proses_acc');
         Route::post('/tolak-barang/{barang}', [BarangController::class, 'tolakAcc'])->name('barang.tolak_acc');
+    });
+
+    // === PENGATURAN QRIS TOKO (Khusus Ketua PKK) ===
+    Route::middleware('role:ketua')->group(function () {
+        Route::get('/pengaturan-qris', [PengaturanController::class, 'qrisIndex'])->name('pengaturan.qris');
+        Route::post('/pengaturan-qris', [PengaturanController::class, 'updateQris'])->name('pengaturan.qris.update');
+        Route::post('/pengaturan-qris/reset', [PengaturanController::class, 'resetQris'])->name('pengaturan.qris.reset');
     });
 
     // === HAK AKSES BENDAHARA (ADMIN) ===

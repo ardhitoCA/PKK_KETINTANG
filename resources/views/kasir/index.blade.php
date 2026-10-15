@@ -185,8 +185,8 @@
 
                     <!-- Merchant Info -->
                     <div class="mb-2">
-                        <h4 class="text-xs font-black text-slate-800 uppercase tracking-tight">PKK KELURAHAN KETINTANG</h4>
-                        <p class="text-[9px] text-slate-400 font-mono mt-0.5">NMID: ID102026888KETINTANG</p>
+                        <h4 class="text-xs font-black text-slate-800 uppercase tracking-tight">{{ $qrisConfig['merchant_name'] }}</h4>
+                        <p class="text-[9px] text-slate-400 font-mono mt-0.5">NMID: {{ $qrisConfig['nmid'] }}</p>
                     </div>
 
                     <!-- Canvas QRIS Generated Dinamis -->
@@ -209,29 +209,12 @@
                     </div>
                 </div>
 
-                <!-- Opsi Bendahara: Pengaturan Base QRIS (Collapsible) -->
-                <div class="pt-1">
-                    <button type="button" onclick="toggleQrisSettings()" class="text-[10px] text-slate-400 hover:text-purple-600 flex items-center justify-between w-full py-1">
-                        <span>⚙️ Pengaturan QRIS Toko Sendiri (Opsional)</span>
-                        <span id="qris-settings-arrow" class="text-xs">▼</span>
-                    </button>
-                    
-                    <div id="qris-settings-box" class="hidden mt-2 p-2.5 bg-slate-50 rounded-xl border border-slate-200 text-left space-y-1.5 text-xs">
-                        <p class="text-[10px] text-slate-500">
-                            Secara default sistem menggunakan payload resmi PKK Ketintang. Jika PKK Anda memiliki kode QRIS statis asli dari Bank/Gopay Merchant, tempelkan teks payload di bawah:
-                        </p>
-                        <textarea id="custom-static-qris-input" rows="2" 
-                            class="w-full p-2 bg-white border border-slate-200 rounded-lg text-[10px] font-mono text-slate-700 focus:outline-none focus:ring-1 focus:ring-purple-500" 
-                            placeholder="000201010211..."></textarea>
-                        <div class="flex items-center space-x-2">
-                            <button type="button" onclick="saveCustomStaticQris()" class="px-2.5 py-1 bg-purple-600 hover:bg-purple-700 text-white rounded-lg text-[10px] font-bold">
-                                Simpan Base QRIS
-                            </button>
-                            <button type="button" onclick="resetDefaultQris()" class="px-2 py-1 bg-slate-200 hover:bg-slate-300 text-slate-600 rounded-lg text-[10px]">
-                                Reset Default
-                            </button>
-                        </div>
-                    </div>
+                <!-- Info Otoritas QRIS Resmi -->
+                <div class="pt-1 text-center">
+                    <span class="inline-flex items-center space-x-1.5 text-[10px] text-slate-400 bg-slate-100 px-3 py-1 rounded-full border border-slate-200">
+                        <span>🔒</span>
+                        <span>QRIS Resmi disahkan & diatur oleh <strong>Ketua PKK</strong></span>
+                    </span>
                 </div>
 
             </div>
@@ -253,8 +236,8 @@
     let cart = {}; // { [id]: { nama, harga, stok, qty } }
     let currentMetode = 'tunai';
     
-    // Default Base Payload QRIS Statis PKK Kelurahan Ketintang Surabaya (EMVCo MPM Standard)
-    const DEFAULT_STATIC_QRIS = '00020101021126680014ID.LINKAJA.WWW01189360091100202688880215ID10202688800010303UMI51450015ID.OR.GPN.WWW0215ID10202688800010303UMI5204541153033605802ID5923PKK KELURAHAN KETINTANG6008SURABAYA61056023162070703A016304';
+    // Base Payload QRIS Statis Resmi Organisasi (Diatur & disahkan oleh Ketua PKK)
+    const OFFICIAL_STATIC_QRIS = @json($qrisConfig['payload']);
 
     function filterBarang() {
         const query = document.getElementById('search-input').value.toLowerCase();
@@ -478,8 +461,7 @@
     }
 
     function renderDynamicQRIS(amount) {
-        const savedCustom = localStorage.getItem('pkk_custom_static_qris') || DEFAULT_STATIC_QRIS;
-        const dynamicPayload = makeDynamicQRIS(savedCustom, amount);
+        const dynamicPayload = makeDynamicQRIS(OFFICIAL_STATIC_QRIS, amount);
 
         document.getElementById('qris-nominal-display').innerText = 'Rp ' + amount.toLocaleString('id-ID');
 
@@ -496,39 +478,6 @@
                 if (error) console.error('Gagal render QRIS:', error);
             });
         }
-    }
-
-    function toggleQrisSettings() {
-        const box = document.getElementById('qris-settings-box');
-        const arrow = document.getElementById('qris-settings-arrow');
-        const input = document.getElementById('custom-static-qris-input');
-        
-        box.classList.toggle('hidden');
-        arrow.innerText = box.classList.contains('hidden') ? '▼' : '▲';
-
-        if (!box.classList.contains('hidden')) {
-            input.value = localStorage.getItem('pkk_custom_static_qris') || DEFAULT_STATIC_QRIS;
-        }
-    }
-
-    function saveCustomStaticQris() {
-        const val = document.getElementById('custom-static-qris-input').value.trim();
-        if (val) {
-            localStorage.setItem('pkk_custom_static_qris', val);
-            alert('Base QRIS toko berhasil disimpan!');
-            let grandTotal = 0;
-            Object.values(cart).forEach(i => grandTotal += (i.harga * i.qty));
-            renderDynamicQRIS(grandTotal);
-        }
-    }
-
-    function resetDefaultQris() {
-        localStorage.removeItem('pkk_custom_static_qris');
-        document.getElementById('custom-static-qris-input').value = DEFAULT_STATIC_QRIS;
-        alert('Base QRIS dikembalikan ke default PKK Ketintang.');
-        let grandTotal = 0;
-        Object.values(cart).forEach(i => grandTotal += (i.harga * i.qty));
-        renderDynamicQRIS(grandTotal);
     }
 </script>
 @endsection

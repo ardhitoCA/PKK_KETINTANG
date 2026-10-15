@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use App\Models\MutasiStok;
+use App\Models\Pengaturan;
 use App\Models\TransaksiPenjualan;
 use App\Models\TransaksiPenjualanDetail;
 use Illuminate\Http\RedirectResponse;
@@ -22,7 +23,9 @@ class KasirController extends Controller
             ->orderBy('nama_barang', 'asc')
             ->get();
 
-        return view('kasir.index', compact('barangs'));
+        $qrisConfig = Pengaturan::getQrisConfig();
+
+        return view('kasir.index', compact('barangs', 'qrisConfig'));
     }
 
     public function checkout(Request $request): RedirectResponse

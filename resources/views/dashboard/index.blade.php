@@ -178,10 +178,10 @@
 
         @elseif ($user->role === 'ketua')
             <!-- MENU KETUA PKK (Gambar 3.9) -->
-            <div class="grid grid-cols-3 gap-3">
+            <div class="grid grid-cols-4 gap-2.5">
                 <!-- Laporan Keuangan -->
                 <a href="{{ route('laporan.keuangan') }}" class="flex flex-col items-center group text-center active:scale-95 transition">
-                    <div class="w-14 h-14 rounded-2xl bg-emerald-50 border border-emerald-200/60 flex items-center justify-center text-2xl shadow-sm group-hover:bg-emerald-100 transition mb-1.5">
+                    <div class="w-13 h-13 rounded-2xl bg-emerald-50 border border-emerald-200/60 flex items-center justify-center text-2xl shadow-sm group-hover:bg-emerald-100 transition mb-1.5">
                         📑
                     </div>
                     <span class="text-xs font-semibold text-slate-700 leading-tight">Laporan</span>
@@ -189,7 +189,7 @@
 
                 <!-- ACC Barang -->
                 <a href="{{ route('barang.acc_antrean') }}" class="flex flex-col items-center group text-center active:scale-95 transition relative">
-                    <div class="w-14 h-14 rounded-2xl bg-rose-50 border border-rose-200/60 flex items-center justify-center text-2xl shadow-sm group-hover:bg-rose-100 transition mb-1.5 relative">
+                    <div class="w-13 h-13 rounded-2xl bg-rose-50 border border-rose-200/60 flex items-center justify-center text-2xl shadow-sm group-hover:bg-rose-100 transition mb-1.5 relative">
                         ✅
                         @if ($pendingCount > 0)
                             <span class="absolute -top-1 -right-1 w-5 h-5 bg-rose-500 text-white rounded-full text-[10px] font-black flex items-center justify-center border-2 border-white shadow">
@@ -200,12 +200,20 @@
                     <span class="text-xs font-semibold text-slate-700 leading-tight">ACC Barang</span>
                 </a>
 
+                <!-- Pengaturan QRIS Toko (Khusus Ketua) -->
+                <a href="{{ route('pengaturan.qris') }}" class="flex flex-col items-center group text-center active:scale-95 transition">
+                    <div class="w-13 h-13 rounded-2xl bg-red-50 border border-red-200/60 flex items-center justify-center text-2xl shadow-sm group-hover:bg-red-100 transition mb-1.5">
+                        📱
+                    </div>
+                    <span class="text-xs font-semibold text-slate-700 leading-tight">Master QRIS</span>
+                </a>
+
                 <!-- Cetak Laporan -->
                 <a href="{{ route('laporan.cetak') }}" target="_blank" class="flex flex-col items-center group text-center active:scale-95 transition">
-                    <div class="w-14 h-14 rounded-2xl bg-sky-50 border border-sky-200/60 flex items-center justify-center text-2xl shadow-sm group-hover:bg-sky-100 transition mb-1.5">
+                    <div class="w-13 h-13 rounded-2xl bg-sky-50 border border-sky-200/60 flex items-center justify-center text-2xl shadow-sm group-hover:bg-sky-100 transition mb-1.5">
                         🖨️
                     </div>
-                    <span class="text-xs font-semibold text-slate-700 leading-tight">Cetak Laporan</span>
+                    <span class="text-xs font-semibold text-slate-700 leading-tight">Cetak</span>
                 </a>
             </div>
 

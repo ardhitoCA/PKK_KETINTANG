@@ -6,6 +6,7 @@ use App\Models\Barang;
 use App\Models\KategoriBarang;
 use App\Models\KategoriKas;
 use App\Models\MutasiStok;
+use App\Models\Pengaturan;
 use App\Models\TransaksiKas;
 use App\Models\TransaksiPenjualan;
 use App\Models\TransaksiPenjualanDetail;
@@ -246,5 +247,11 @@ class DatabaseSeeder extends Seeder
             'keterangan' => 'Beli plastik kemasan dan mika kue di Pasar Ketintang',
             'bukti_nota' => null,
         ]);
+
+        // 8. Pengaturan Default QRIS (Diatur oleh Ketua)
+        Pengaturan::setValue('qris_payload', Pengaturan::DEFAULT_QRIS_PAYLOAD, 'Payload base string QRIS Statis PKK Ketintang');
+        Pengaturan::setValue('qris_merchant_name', Pengaturan::DEFAULT_MERCHANT_NAME, 'Nama Merchant QRIS');
+        Pengaturan::setValue('qris_nmid', Pengaturan::DEFAULT_NMID, 'NMID Resmi QRIS PKK');
+        Pengaturan::setValue('qris_kota', Pengaturan::DEFAULT_KOTA, 'Kota Merchant');
     }
 }
